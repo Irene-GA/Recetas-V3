@@ -1,0 +1,13 @@
+<div class="alert alert-secondary">
+    <a class="btn btn-dark" href="/">Inicio</a> 
+    &nbsp;&nbsp;
+    <a class="btn btn-dark" href="/admin">Administración</a>
+    &nbsp;&nbsp;
+    <a class="btn btn-dark" href="/admin/recetas/nueva">Nueva Receta</a>
+    &nbsp;&nbsp;
+  {% if session.usuario %}
+        <a class="btn btn-dark" href="/auth/logout">Salir</a>
+    {% else %} 
+        <a class="btn btn-dark" href="/auth/login">Login</a>
+    {% endif%}
+</div>

@@ -1,0 +1,21 @@
+{% extends "publico_base.njk" %}
+{% block titulo %}Recetas | Buscar{% endblock %}
+{% block contenido %}
+
+  <nav class="navbar navbar-light bg-light justify-content-between">
+    
+    <form class="navbar-form navbar-right form-inline" action="/buscar" method="POST">
+      <div class="form-group">
+        <input class="form-control mr-sm-2" type="text"  placeholder="Buscar recetas"> 
+      </div> 
+      <button type="submit" class="btn btn-outline-success my-2 my-sm-0">Buscar</button> 
+    </form>
+  </nav>
+
+  {% for receta in recetas %}    
+    <li> {{ receta.titulo }} <a href="/receta/{{ receta.id }}" class="btn btn-success"> Ver ficha </a> </li>
+  {% endfor %}
+{% endblock %}
+
+
+

@@ -1,0 +1,25 @@
+{% extends "admin_base.njk" %}
+
+{% block titulo %} Listado | Recetas {% endblock %}
+
+{% block contenido %}
+    <h1>Listado de Recetas</h1>
+    <div>
+        <ul>
+        {% for receta in recetas %}
+            {% if loop.index % 2 == 0 %}
+                 <li class="par">
+            {% else %}
+                <li class="impar">
+            {% endif %}
+            {{ receta.titulo }} 
+                <form action="/admin/recetas/{{ receta.id }}" method="post">
+                    <a href="/receta/{{ receta.id }}" class="btn btn-success"> Ver ficha </a>
+                    <a href="/admin/recetas/editar/{{ receta.id }}" class="btn btn-primary"> Editar </a>
+                    <input type="hidden" name="_method" value="delete" />          
+                    <button type="submit" class="btn btn-danger"> Borrar </button>
+                </form> </li>
+        {% endfor %}
+        </ul>
+    </div>
+{% endblock %}

@@ -1,0 +1,100 @@
+{% extends "admin_base.njk" %}
+{% block titulo %} Opciones | Receta{% endblock %}
+{% block contenido %}
+    {% if receta.id %}
+        <h1>Editar Receta</h1>
+        <form action="/admin/recetas/{{ receta.id }}" method="post">
+            <input type="hidden" name="_method" value="put">
+    {% else %}
+        <h1>Nueva Receta</h1>
+        <form action="/admin/recetas" method="post" enctype="multipart/form-data">
+    {% endif %}
+            <div class="form-group">
+                <label for="titulo">Título:</label>
+                <input type="text" class="form-control" name="titulo"
+                    value="{{receta.titulo}}" />
+            </div>
+            <div class="form-group">
+                <label for="comensales">Comensales:</label>
+                <input type="number" class="form-control" name="comensales"
+                    value="{{receta.comensales}}" />
+            </div>
+            <div class="form-group">
+                <label for="preparacion">Preparación:</label>
+                <input type="text" class="form-control" name="preparacion"
+                    value="{{receta.preparacion}}"  />
+            </div>
+            
+            <div class="form-group">
+                <label for="coccion">Cocción:</label>
+                <input type="number" class="form-control" name="coccion"
+                    value="{{receta.coccion}}"  />
+            </div>
+            <div class="form-group">
+                <label for="descripcion">Descripción:</label>
+                <input type="text" class="form-control" name="descripcion"
+                    value="{{receta.descripcion}}"  />
+            </div>
+
+        {% if not receta.id %}
+            <div class="form-group">
+                <label for="imagen">Imagen:</label>
+                <input type="file" class="form-control" name="imagen"
+                    placeholder="Imagen de la receta..." />
+            </div>
+        {% endif %}
+
+            <div class="form-group">
+            <label for="ingrediente"><strong><h3> Elementos:</h3></strong></label>
+            <div class="form-group">
+                <label for="ingrediente">Ingrediente:</label>
+                <input type="text" class="form-control" name="ingrediente"
+                value="{{receta.elemento.ingrediente}}"  />
+            </div>
+        
+            <div class="form-group">
+                <label for="cantidad">Cantidad:</label>
+                <input type="number" class="form-control" name="cantidad"
+                    value="{{receta.elemento.cantidad}}"  />
+            </div>
+            <div class="form-group">
+                <label for="unidad">Unidad:</label>
+                <input type="text" class="form-control" name="unidad"
+                    value="{{receta.elemento.unidad}}"  />
+            </div>
+
+            <div class="form-group">
+                <label for="ingrediente2">Ingrediente:</label>
+                <input type="text" class="form-control" name="ingrediente2"
+                value="{{receta.elemento.ingrediente}}"  />
+            </div>
+            
+            <div class="form-group">
+                <label for="cantidad2">Cantidad:</label>
+                <input type="number" class="form-control" name="cantidad2"
+                    value="{{receta.elemento.cantidad}}"  />
+            </div>
+            <div class="form-group">
+                <label for="unidad2">Unidad:</label>
+                <input type="text" class="form-control" name="unidad2"
+                    value="{{receta.elemento.unidad}}" />
+            </div>
+            <div class="form-group">
+                <label for="ingrediente3">Ingrediente:</label>
+                <input type="text" class="form-control" name="ingrediente3"
+                value="{{receta.elemento.ingrediente}}" />
+            </div>
+            <div class="form-group">
+                <label for="cantidad3">Cantidad:</label>
+                <input type="number" class="form-control" name="cantidad3"
+                    value="{{receta.elemento.cantidad}}" />
+            </div>
+            <div class="form-group">
+                <label for="unidad3">Unidad:</label>
+                <input type="text" class="form-control" name="unidad3"
+                    value="{{receta.elemento.unidad}}" />
+            </div>    
+        <button type="submit" class="btn btn-primary">Enviar
+        </button>
+    </form>
+{% endblock %}
