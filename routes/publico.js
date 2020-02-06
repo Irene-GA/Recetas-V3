@@ -13,31 +13,16 @@ router.get('/', (req, res) => {
 
 //Servicio de Buscar Recetas
 router.post('/buscar', (req, res) => {
-    let busqueda = req.body.buscar
-    Receta.find({ titulo: busqueda },
-        function callback(resultado, error) {
-            if (resultado) {
-                res.render('publico_index', { receta: resultado });
-            } else {
-                res.render('publico_error', { mensaje: "No se encontraron recetas" });
-            }
-        }).catch(error => {
-        res.render('publico_error');
-    })
+    let busqueda = req.body.buscar;
+    Receta.find().then(resultado => {
+        if (resultado) {
+            res.render('publico_index', { receta: resultado });
+        } else {
+            res.render('publico_error', { mensaje: "No se encontraron recetas" });
+        }
+    });
 });
 
-/* });
-
-        Receta.find().then(resultado => {
-            if (Receta.titulo.includes(busqueda2)) {
-                res.render('publico_index', { receta: resultado });
-            } else {
-                res.render('publico_error', { mensaje: "No se encontraron recetas" });
-            }
-        }).catch(error => {
-            res.render('publico_error');
-        });
-    });*/
 
 // GET Receta por ID
 router.get('/receta/:id', (req, res) => {
