@@ -14,7 +14,9 @@ router.get('/', (req, res) => {
 //Servicio de Buscar Recetas
 router.post('/buscar', (req, res) => {
     let busqueda = req.body.buscar;
-    Receta.find().then(resultado => {
+    Receta.find({
+        titutlo: busqueda
+    }).then(resultado => {
         if (resultado) {
             res.render('publico_index', { receta: resultado });
         } else {

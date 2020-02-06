@@ -12,8 +12,12 @@
     </form>
   </nav>
 
-  {% for receta in recetas %}    
-    <li> {{ receta.titulo }} <a href="/receta/{{ receta.id }}" class="btn btn-success"> Ver ficha </a> </li>
+  {% for receta in recetas %}
+  <li> {{ receta.titulo }}
+    <form action="/admin/recetas/{{ receta.id }}" method="post">  
+       <a href="/receta/{{ receta.id }}" class="btn btn-success"> Ver ficha </a>
+    </form>
+    </li>
   {% endfor %}
 {% endblock %}
 

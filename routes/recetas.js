@@ -90,15 +90,21 @@ router.post('/recetas', upload.single('imagen'), autentication, (req, res) => {
         elementos: [elemento1, elemento2, elemento3]
     });
 
-    nuevaReceta.save().then(resultado => {
-        res.redirect(req.baseUrl);
-    }).catch(error => {
-        res.render('admin_error', { mensaje: "Error añadiendo receta" });
-        console.log(error);
-    }).catch(error => {
-        res.render('admin_error');
-        console.log(error);
-    });
+    if (nuevaReceta.imagen == undefined)
+
+        try {
+        nuevaReceta.save().then(resultado => {
+            res.redirect(req.baseUrl);
+        }).catch(error => {
+            res.render('admin_error', { mensaje: "Error añadiendo receta" });
+        }).catch(error => {
+            res.render('admin_error');
+        });
+    } catch (error) {
+        if (req.file.filename == undefined)
+            res.render('admin_error', { mensaje: "La imagen no puede quedar vacía" });
+    }
+
 });
 
 
